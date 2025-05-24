@@ -1,0 +1,14 @@
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\bin\Debug\net8.0\ExamProjectTOP.exe
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\bin\Debug\net8.0\ExamProjectTOP.deps.json
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\bin\Debug\net8.0\ExamProjectTOP.runtimeconfig.json
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\bin\Debug\net8.0\ExamProjectTOP.dll
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\bin\Debug\net8.0\ExamProjectTOP.pdb
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.GeneratedMSBuildEditorConfig.editorconfig
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.AssemblyInfoInputs.cache
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.AssemblyInfo.cs
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.csproj.CoreCompileInputs.cache
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.dll
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\refint\ExamProjectTOP.dll
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.pdb
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.genruntimeconfig.cache
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ref\ExamProjectTOP.dll
