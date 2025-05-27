@@ -12,3 +12,4 @@ F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\refint\ExamProjec
 F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.pdb
 F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.genruntimeconfig.cache
 F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ref\ExamProjectTOP.dll
+F:\source\repos\ExamProjectTOP\ExamProjectTOP\obj\Debug\net8.0\ExamProjectTOP.sourcelink.json

@@ -4,8 +4,16 @@
     {
         static void Main(string[] args)
         {
-            WordsList wordsList = new WordsList();
+            //try
+            //{
 
+            //    temp temp2 = new temp("sdfgfsdgsfd");
+            //}
+            //catch (BecauseIWantWildBerriesException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            WordsList wordsList = new WordsList();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace ExamProjectTOP
     public class WordsList
     {
         private List<WordDictionary> _dictionaries;
+        private string dictsDirectory = "C:\\Users\\Ivan\\Desktop\\Lesson39";
         public WordsList()
         {
             _dictionaries = new List<WordDictionary>();
@@ -14,7 +15,7 @@ namespace ExamProjectTOP
             //AddDictionary("Russian-English");
             //AddWord("Russian-English", "Как дела", new List<string>() { "How are you", "What's up" });
             //AddWord("Russian-English", "Хорошо", new List<string>() { "Good", "Well" });
-            //AddWord("Russian-English", "пРивеТ", new List<string>() {"hELlo", "hI"});
+            AddWord("Russian.txt", "пРивеТ", new List<string>() {"hELlo", "hI"});
             //RenameTranslation("Russian-English", "привет", "hello", "HELP");
             //RenameTranslations("Russian-English", "привет", new List<string>() { "Good", "Well" });
             //SortDictionary("Russian-English");
@@ -25,7 +26,7 @@ namespace ExamProjectTOP
         }
         public List<string> LoadDictionaries()
         {
-            var languageDicts = Directory.GetFiles("C:\\Users\\Ivan\\Desktop\\Lesson39",
+            var languageDicts = Directory.GetFiles(dictsDirectory,
                 "*.*", SearchOption.AllDirectories);
             var dictionaryTypes = new List<string>();
             foreach (var language in languageDicts)
@@ -39,11 +40,12 @@ namespace ExamProjectTOP
         }
         public void SaveDictionaries()
         {
-            var languageDicts = Directory.GetFiles("C:\\Users\\Ivan\\Desktop\\Lesson39",
+            var languageDicts = Directory.GetFiles(dictsDirectory,
                "*.*", SearchOption.AllDirectories);
             foreach (var language in languageDicts)
             {
-                _dictionaries.Last().SaveDictionary(language);
+                FileInfo fileInfo = new FileInfo(language);
+                _dictionaries.Where(x => x.DictionaryType == fileInfo.Name).First().SaveDictionary(language);
             }
         }
         public void SortDictionary(string dictionaryType)
@@ -63,6 +65,10 @@ namespace ExamProjectTOP
             }
 
             _dictionaries.Add(new WordDictionary(dictionaryType));
+            using (File.Create(dictsDirectory + $"\\{dictionaryType}"))
+            {
+
+            }
         }
         public void RemoveDictionary(string dictionaryType)
         {

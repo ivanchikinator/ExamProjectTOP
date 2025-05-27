@@ -19,12 +19,13 @@ namespace ExamProjectTOP
         }
         public void Add(string word, List<string> translations)
         {
-            if (_dictionary.ContainsKey(word))
+            string normalizedWord = char.ToUpper(word[0]) + word[1..].ToLower();
+            if (_dictionary.ContainsKey(normalizedWord))
             {
-                Console.WriteLine("Error, there already exist such word " + word);
+                Console.WriteLine("Error, there already exist such word " + normalizedWord);
                 return;
             }
-            _dictionary.Add(char.ToUpper(word[0]) + word[1..].ToLower(),
+            _dictionary.Add(normalizedWord,
                 translations.Select(x => char.ToUpper(x[0]) + x[1..].ToLower()).ToList());
         }
         public void Remove(string word)
