@@ -19,24 +19,22 @@ namespace ExamProjectTOP
             //RenameTranslation("Russian-English", "привет", "hello", "HELP");
             //RenameTranslations("Russian-English", "привет", new List<string>() { "Good", "Well" });
             //SortDictionary("Russian-English");
+            FindTranslation("Russian.txt", "привет");
             ShowValues("English.txt");
             Console.WriteLine();
             ShowValues("Russian.txt");
             SaveDictionaries();
         }
-        public List<string> LoadDictionaries()
+        public void LoadDictionaries()
         {
             var languageDicts = Directory.GetFiles(dictsDirectory,
                 "*.*", SearchOption.AllDirectories);
-            var dictionaryTypes = new List<string>();
             foreach (var language in languageDicts)
             {
                 FileInfo dictionaryType = new FileInfo(language);
                 _dictionaries.Add(new WordDictionary(dictionaryType.Name));
-                dictionaryTypes.Add(dictionaryType.Name);
                 _dictionaries.Last().LoadDictionary(language);
             }
-            return dictionaryTypes;
         }
         public void SaveDictionaries()
         {
@@ -47,6 +45,14 @@ namespace ExamProjectTOP
                 FileInfo fileInfo = new FileInfo(language);
                 _dictionaries.Where(x => x.DictionaryType == fileInfo.Name).First().SaveDictionary(language);
             }
+        }
+        public void ExportTranslations()
+        {
+
+        }
+        public void FindTranslation(string dictionaryType, string word)
+        {
+            _dictionaries.Where(x => x.DictionaryType == dictionaryType).First().FindTranslation(word);
         }
         public void SortDictionary(string dictionaryType)
         {
