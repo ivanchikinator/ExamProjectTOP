@@ -178,16 +178,16 @@ namespace ExamProjectTOP
                 File.AppendAllText(path, wordNTranslations.Key + " " + string.Join(" ", wordNTranslations.Value) + "\n");
             }
         }
-        public void FindTranslation(string word)
+        public string FindTranslation(string word)
         {
             string normalizedWord = char.ToUpper(word[0]) + word[1..].ToLower();
             if (!_dictionary.ContainsKey(normalizedWord))
             {
                 Console.WriteLine("Error, the translations weren't found");
-                return;
+                return "Error";
             }
-            Console.WriteLine("Translations of the word " + normalizedWord);
-            Console.WriteLine(string.Join("\n", _dictionary[normalizedWord]));
+            return "Translations of the word " + normalizedWord + 
+                "\n" + string.Join("\n", _dictionary[normalizedWord]);
         }
     }
 }
