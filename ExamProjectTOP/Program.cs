@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        private static WordsList wordsList;
         static void Main(string[] args)
         {
             //try
@@ -13,7 +14,7 @@
             //{
             //    Console.WriteLine(ex.Message);
             //}
-            WordsList wordsList = new WordsList();
+            wordsList = new WordsList();
         }
     }
 }

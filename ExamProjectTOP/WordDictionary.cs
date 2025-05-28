@@ -102,9 +102,9 @@ namespace ExamProjectTOP
                 return;
             }
             KeyValuePair<string, List<string>> WordNTranslation =
-                _dictionary.Where(x => x.Key == oldWord).First();
+                _dictionary.Where(x => x.Key == normalizedOldWord).First();
             _dictionary.Remove(WordNTranslation.Key);
-            _dictionary.Add(newWord, WordNTranslation.Value);
+            _dictionary.Add(normalizedNewWord, WordNTranslation.Value);
         }
         public void RenameTranslation(string word, string oldTranslation, string newTranslation)
         {
@@ -166,7 +166,8 @@ namespace ExamProjectTOP
             var dictionary = File.ReadAllLines(path);
             foreach (var word in dictionary)
             {
-                string[] keyvaluepair = word.Split();
+                if(string.IsNullOrEmpty(word)) continue;
+                string[] keyvaluepair = word.Split(new char[] {',','-'});
                 _dictionary.Add(keyvaluepair[0], keyvaluepair[1..].ToList());
             }
         }
@@ -175,7 +176,7 @@ namespace ExamProjectTOP
             File.WriteAllText(path, "");
             foreach (KeyValuePair<string, List<string>> wordNTranslations in _dictionary)
             {
-                File.AppendAllText(path, wordNTranslations.Key + " " + string.Join(" ", wordNTranslations.Value) + "\n");
+                File.AppendAllText(path, wordNTranslations.Key + "-" + string.Join(",", wordNTranslations.Value) + "\n");
             }
         }
         public string FindTranslation(string word)

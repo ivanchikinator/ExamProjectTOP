@@ -71,8 +71,8 @@ namespace ExamProjectTOP
                         FileInfo dictionaryName = new FileInfo(dictionaries[dictionaryIndex-1]);
                         ShowValues(dictionaryName.Name);
 
-                        ShowDictionaryOptions();
-                        
+                        ShowDictionaryOptions(dictionaryName.Name);
+
                     }
                     catch
                     {
@@ -90,6 +90,7 @@ namespace ExamProjectTOP
                     else if (!string.IsNullOrEmpty(dictionaryType))
                     {
                         AddDictionary(dictionaryType);
+                        ShowMenu();
                     }
                     break;
                 case 3:
@@ -102,13 +103,14 @@ namespace ExamProjectTOP
                     else if (!string.IsNullOrEmpty(dictionaryType))
                     {
                         RemoveDictionary(dictionaryType);
+                        ShowMenu();
                     }
                     break;
                 case 4:
                     return;
             }
         }
-        public void ShowDictionaryOptions()
+        public void ShowDictionaryOptions(string dictionaryType)
         {
             Console.WriteLine("=====      Add word   =====");
             Console.WriteLine("=====    Rename word  =====");
@@ -120,6 +122,138 @@ namespace ExamProjectTOP
             Console.WriteLine("===== Find translation ====");
             Console.WriteLine("==== Export translation ===");
             Console.WriteLine("=====       Exit      =====");
+            int dictionaryOption;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Enter index 0-9");
+                    dictionaryOption = int.Parse(Console.ReadKey().KeyChar +"");
+                    Console.WriteLine();
+                    if (dictionaryOption < 0 || dictionaryOption > 9)
+                        throw new Exception("");
+                    break;
+                }
+                catch
+                {
+                    ShowDictionaryOptions(dictionaryType);
+                }
+            }
+            string word; string translation; string fileFullPath;
+            switch (dictionaryOption)
+            {
+                case 0:
+                    Console.WriteLine("Enter your word or quit(q)");
+                    word = Console.ReadLine();
+                    if(word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter translations separated ONLY by commas");
+                    string[] translations = Console.ReadLine().Split(',');
+                    AddWord(dictionaryType, word, translations.ToList());
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 1:
+                    Console.WriteLine("Enter word to be changed or quit(q)");
+                    string oldWord = Console.ReadLine();
+                    if (oldWord == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter new word");
+                    string newWord = Console.ReadLine();
+                    RenameWord(dictionaryType, oldWord, newWord);
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter word to be deleted or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    RemoveWord(dictionaryType, word);
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 3:
+                    Console.WriteLine("Enter word where you want to add your translation or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter the translation");
+                    translation = Console.ReadLine();
+                    AddTranslation(dictionaryType, word, translation);
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 4:
+                    Console.WriteLine("Enter word where you want to delete a translation or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter the translation");
+                    translation = Console.ReadLine();
+                    RemoveTranslation(dictionaryType, word, translation);
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 5:
+                    Console.WriteLine("Enter word where you want to rename a translation or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter old translation");
+                    string oldTranslation = Console.ReadLine();
+                    Console.WriteLine("Enter new translation");
+                    string newTranslation = Console.ReadLine();
+                    RenameTranslation(dictionaryType, word, oldTranslation, newTranslation);
+
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 6:
+                    Console.WriteLine("Enter word where you want to set new translations or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter new translations separated ONLY by commas");
+                    string[] newTranslations = Console.ReadLine().Split(',');
+                    RenameTranslations(dictionaryType, word, newTranslations.ToList());
+
+                    SaveDictionaries();
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 7:
+                    Console.WriteLine("Enter your word to find translations or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    FindTranslation(dictionaryType,word);
+                    Console.WriteLine("Do you want to export them into a file?(y or any other key)");
+                    char answer = Console.ReadKey().KeyChar;
+                    if(answer == 'y')
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Enter full path to your file");
+                        fileFullPath = Console.ReadLine();
+                        ExportTranslations(dictionaryType, word, fileFullPath);
+                    }
+
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 8:
+                    Console.WriteLine("Enter your word to export translations from or quit(q)");
+                    word = Console.ReadLine();
+                    if (word == "q") ShowDictionaryOptions(dictionaryType);
+                    Console.WriteLine("Enter full path to your file");
+                    fileFullPath = Console.ReadLine();
+                    ExportTranslations(dictionaryType, word, fileFullPath);
+                   
+                    ShowValues(dictionaryType);
+                    ShowDictionaryOptions(dictionaryType);
+                    break;
+                case 9:
+                    ShowMenu();
+                    break;
+            }
         }
         public void LoadDictionaries()
         {
@@ -144,9 +278,10 @@ namespace ExamProjectTOP
         }
         public void ExportTranslations(string dictionaryType, string word, string fullPath)
         {
-            using (File.Create(fullPath))
+            if (!File.Exists(fullPath))
             {
-
+                Console.WriteLine("Error, file does not exist");
+                return;
             }
             File.WriteAllText(fullPath, FindTranslation(dictionaryType, word, false));
         }
